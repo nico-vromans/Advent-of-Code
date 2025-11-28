@@ -1,11 +1,11 @@
-# Advent of Code 2025
-My attempts at [Advent of Code 2025]
+# Advent of Code
+My attempts at [Advent of Code]
 
 # License
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International]
 
 [//]: # (Links)
 
-[Advent of Code 2025]: https://adventofcode.com/2025
+[Advent of Code]: https://adventofcode.com/
 
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International]: LICENSE
