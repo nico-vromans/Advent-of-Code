@@ -1,5 +1,5 @@
 # Advent of Code
-My attempts at [Advent of Code]
+My attempts at [Advent of Code].
 
 # License
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International]
