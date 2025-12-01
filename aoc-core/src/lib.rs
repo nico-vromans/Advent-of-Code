@@ -1,3 +1,6 @@
+#[cfg(test)]
+mod tests;
+
 pub trait Solver {
     fn solve(&self, input: &str) -> Vec<String>;
 }
