@@ -1,3 +1,6 @@
+#[cfg(test)]
+mod tests;
+
 use aoc_core::Solver;
 
 pub struct Day01;
