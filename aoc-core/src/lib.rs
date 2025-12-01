@@ -8,10 +8,10 @@ pub struct Day {
 }
 
 pub fn read_input(year: u16, day: u8) -> Result<String, std::io::Error> {
-    let paths = [
-        format!("year{}/src/day{:03}/input.txt", year, day), // From workspace root
-        format!("src/day{:03}/input.txt", day),             // From year crate root
-        format!("day{:03}/input.txt", day),                 // From src dir (unlikely but possible)
+    let paths: [String; 3] = [
+        format!("year{}/src/day{:02}/input.txt", year, day), // From workspace root
+        format!("src/day{:02}/input.txt", day),              // From year crate root
+        format!("day{:02}/input.txt", day),                  // From src dir (unlikely but possible)
     ];
 
     for path in &paths {

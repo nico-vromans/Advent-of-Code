@@ -1,17 +1,20 @@
 use aoc_core::Solver;
 
-pub struct Day001;
+pub struct Day01;
 
-impl Solver for Day001 {
+impl Solver for Day01 {
     fn solve(&self, input: &str) -> Vec<String> {
         fn parse_instructions(input: &str) -> impl Iterator<Item = (char, i32)> + '_ {
             input.lines().filter_map(|line| {
                 let line: &str = line.trim();
+
                 if line.is_empty() {
                     return None;
                 }
+
                 let direction: char = line.chars().next()?.to_ascii_uppercase();
                 let amount: i32 = line[1..].parse().ok()?;
+
                 Some((direction, amount))
             })
         }
@@ -32,6 +35,7 @@ impl Solver for Day001 {
                     stop_at_zero += 1;
                 }
             }
+
             stop_at_zero
         }
 
@@ -52,6 +56,7 @@ impl Solver for Day001 {
                     }
                 }
             }
+
             total_zeros
         }
 

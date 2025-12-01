@@ -1,10 +1,10 @@
 use aoc_core::Solver;
 
-pub mod day001;
+pub mod day01;
 
 pub fn get_solver(day: u8) -> Option<Box<dyn Solver>> {
     match day {
-        1 => Some(Box::new(day001::Day001)),
+        1 => Some(Box::new(day01::Day01)),
         _ => None,
     }
 }

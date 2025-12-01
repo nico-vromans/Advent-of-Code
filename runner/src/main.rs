@@ -1,3 +1,4 @@
+use aoc_core::Solver;
 use std::env;
 use std::process;
 
@@ -19,7 +20,7 @@ fn main() {
     let year: u16 = parts[0].parse().expect("Invalid year");
     let day: u8 = parts[1].parse().expect("Invalid day");
 
-    let solver = match year {
+    let solver: Option<Box<dyn Solver>> = match year {
         2025 => year2025::get_solver(day),
         _ => {
             eprintln!("Year {} not implemented", year);
@@ -31,23 +32,20 @@ fn main() {
         // In a real scenario, we would read the input file here.
         // For now, we'll pass a dummy string or try to read it if it exists.
         // The input file path convention could be `year{}/src/day{:02}/input.txt` but that's inside src.
-        // Better: `year{}/input/day{:02}.txt` or similar. 
-        // For this basic setup, let's assume the input is passed or hardcoded for now, 
+        // Better: `year{}/input/day{:02}.txt` or similar.
+        // For this basic setup, let's assume the input is passed or hardcoded for now,
         // or we try to read from `year2025/src/day01/input.txt` relative to CWD.
-        
+
         // Use the generic input reader
-        let input = match aoc_core::read_input(year, day) {
-            Ok(s) => s,
-            Err(e) => {
-                eprintln!("Error reading input: {}", e);
-                String::new()
-            }
-        };
+        let input: String = aoc_core::read_input(year, day).unwrap_or_else(|e| {
+            eprintln!("Error reading input: {}", e);
+            String::new()
+        });
 
         println!("--- Year {} Day {} ---", year, day);
         let results = solver.solve(&input);
         if results.is_empty() {
-             println!("No parts implemented.");
+            println!("No parts implemented.");
         } else {
             for (i, result) in results.iter().enumerate() {
                 println!("Part {}: {}", i + 1, result);
