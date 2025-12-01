@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "runner",
+    "year2025",
+    "aoc-core",
+]
