@@ -15,7 +15,15 @@ fn test_solve_example_single() {
     // Part 1 example answer from README
     assert_eq!(result[0], "33");
 
-    // Part 2 has not been specified in the README excerpt; once defined, add/assert here.
+    // Part 2 answer derived from logic or manual calculation if small enough.
+    // The README says for the FULL example it is 4174379265.
+    // For the single example "11-22":
+    // 11-22. Invalid: 11, 22. Sum = 33.
+    // Part 2 rule: "at least twice".
+    // 11 is 1 repeated 2 times. Valid.
+    // 22 is 2 repeated 2 times. Valid.
+    // So sum is 33.
+    assert_eq!(result[1], "33");
 }
 
 #[test]
@@ -32,7 +40,8 @@ fn test_solve_example_full() {
     // Part 1 example answer from README
     assert_eq!(result[0], "1227775554");
 
-    // Part 2 has not been specified in the README excerpt; once defined, add/assert here.
+    // Part 2 example answer from README
+    assert_eq!(result[1], "4174379265");
 }
 
 #[test]
@@ -47,7 +56,6 @@ fn test_real_input_smoke() {
     // Ensure we always return two parts
     assert_eq!(result.len(), 2, "solver should return two answers");
 
-    // TODO: Replace these with known answers when available and un-ignore the test.
     assert_eq!(result[0], "53420042388");
-    // assert_eq!(result[1], "<part2>");
+    assert_eq!(result[1], "69553832684");
 }
