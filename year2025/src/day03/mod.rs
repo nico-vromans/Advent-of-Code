@@ -13,7 +13,7 @@ impl Solver for Day03 {
             let mut total: u128 = 0;
 
             for line in input.lines() {
-                let s = line.trim();
+                let s: &str = line.trim();
                 if s.is_empty() {
                     continue;
                 }
@@ -21,7 +21,7 @@ impl Solver for Day03 {
                 // Collect digits; ignore any non-digit just in case.
                 let digits: Vec<u8> = s
                     .chars()
-                    .filter_map(|c| c.to_digit(10).map(|d| d as u8))
+                    .filter_map(|c: char| c.to_digit(10).map(|d: u32| d as u8))
                     .collect();
 
                 if digits.len() < 2 {
@@ -29,8 +29,8 @@ impl Solver for Day03 {
                     continue;
                 }
 
-                // Build suffix maximums of digits to quickly get the best ones place after index i
-                let n = digits.len();
+                // Build suffix maximums of digits to quickly get the best ones to place after index i
+                let n: usize = digits.len();
                 let mut suffix_max: Vec<u8> = vec![0; n + 1];
                 // suffix_max[n] = 0 (no digits after the last index)
                 for i in (0..n).rev() {
@@ -39,8 +39,8 @@ impl Solver for Day03 {
 
                 let mut best: u16 = 0;
                 for i in 0..(n - 1) {
-                    let tens = digits[i];
-                    let ones = suffix_max[i + 1];
+                    let tens: u8 = digits[i];
+                    let ones: u8 = suffix_max[i + 1];
                     let cand: u16 = (tens as u16) * 10 + (ones as u16);
                     if cand > best {
                         best = cand;
@@ -61,7 +61,7 @@ impl Solver for Day03 {
             let mut total: u128 = 0;
 
             for line in input.lines() {
-                let s = line.trim();
+                let s: &str = line.trim();
                 if s.is_empty() {
                     continue;
                 }
@@ -69,10 +69,11 @@ impl Solver for Day03 {
                 // Collect digits; ignore any non-digit just in case.
                 let digits: Vec<u8> = s
                     .chars()
-                    .filter_map(|c| c.to_digit(10).map(|d| d as u8))
+                    .filter_map(|c| c.to_digit(10).map(|d: u32| d as u8))
                     .collect();
 
-                let n = digits.len();
+                let n: usize = digits.len();
+
                 if n < K {
                     // Cannot select exactly K digits; contribute 0.
                     continue;
@@ -80,8 +81,9 @@ impl Solver for Day03 {
 
                 // Greedy monotonic stack to keep the largest subsequence of length K.
                 // We can remove exactly r = n - K digits.
-                let mut remove = n - K;
+                let mut remove: usize = n - K;
                 let mut stack: Vec<u8> = Vec::with_capacity(n);
+
                 for &d in &digits {
                     while remove > 0 && !stack.is_empty() && stack[stack.len() - 1] < d {
                         stack.pop();
@@ -89,21 +91,25 @@ impl Solver for Day03 {
                     }
                     stack.push(d);
                 }
+
                 // If we still have removals left, drop from the end.
-                let mut chosen = if stack.len() > K {
+                let mut chosen: Vec<u8> = if stack.len() > K {
                     stack[..K].to_vec()
                 } else {
                     stack
                 };
+
                 if chosen.len() > K {
                     chosen.truncate(K);
                 }
 
-                // Convert the 12-digit sequence to a u128 value and add to total.
+                // Convert the 12-digit sequence to a u128 value and add to the total.
                 let mut val: u128 = 0;
+
                 for &d in &chosen {
                     val = val * 10 + (d as u128);
                 }
+
                 total += val;
             }
 

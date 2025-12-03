@@ -9,14 +9,14 @@ impl Solver for Day02 {
     fn solve(&self, input: &str) -> Vec<String> {
         // Parse input like "a-b,c-d,..." possibly wrapped across lines/spaces
         fn parse_ranges(input: &str) -> impl Iterator<Item = (u128, u128)> + '_ {
-            input.split(',').filter_map(|tok| {
+            input.split(',').filter_map(|tok: &str| {
                 let s: &str = tok.trim();
 
                 if s.is_empty() {
                     return None;
                 }
 
-                let (a, b) = s.split_once('-')?;
+                let (a, b): (&str, &str) = s.split_once('-')?;
                 let lo: u128 = a.trim().parse().ok()?;
                 let hi: u128 = b.trim().parse().ok()?;
 
@@ -154,8 +154,8 @@ impl Solver for Day02 {
         }
 
         fn prime_factors(mut n: u32) -> Vec<u32> {
-            let mut factors = Vec::new();
-            let mut d = 2;
+            let mut factors: Vec<u32> = Vec::new();
+            let mut d: u32 = 2;
 
             while d * d <= n {
                 if n % d == 0 {

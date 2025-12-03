@@ -8,7 +8,7 @@ pub struct Day01;
 impl Solver for Day01 {
     fn solve(&self, input: &str) -> Vec<String> {
         fn parse_instructions(input: &str) -> impl Iterator<Item = (char, i32)> + '_ {
-            input.lines().filter_map(|line| {
+            input.lines().filter_map(|line: &str| {
                 let line: &str = line.trim();
 
                 if line.is_empty() {

@@ -1,5 +1,6 @@
 use aoc_core::Solver;
 use std::env;
+use std::io::Error;
 use std::process;
 
 fn main() {
@@ -10,8 +11,9 @@ fn main() {
         process::exit(1);
     }
 
-    let target = &args[1];
+    let target: &String = &args[1];
     let parts: Vec<&str> = target.split('-').collect();
+
     if parts.len() != 2 {
         eprintln!("Invalid format. Use <year-day>, e.g., 2025-01");
         process::exit(1);
@@ -37,13 +39,15 @@ fn main() {
         // or we try to read from `year2025/src/day01/input.txt` relative to CWD.
 
         // Use the generic input reader
-        let input: String = aoc_core::read_input(year, day).unwrap_or_else(|e| {
+        let input: String = aoc_core::read_input(year, day).unwrap_or_else(|e: Error| {
             eprintln!("Error reading input: {}", e);
             String::new()
         });
 
         println!("--- Year {} Day {} ---", year, day);
-        let results = solver.solve(&input);
+
+        let results: Vec<String> = solver.solve(&input);
+
         if results.is_empty() {
             println!("No parts implemented.");
         } else {

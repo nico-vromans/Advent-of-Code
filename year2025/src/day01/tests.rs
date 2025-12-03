@@ -3,7 +3,7 @@ use aoc_core::Solver;
 
 #[test]
 fn test_day01_readme_examples_both_parts() {
-    let input = "L68
+    let input: &str = "L68
 L30
 R48
 L5
@@ -14,7 +14,7 @@ L99
 R14
 L82";
     let solver = Day01;
-    let result = solver.solve(input);
+    let result: Vec<String> = solver.solve(input);
 
     // Part 1 example answer is 3
     assert_eq!(result[0], "3");
@@ -76,15 +76,15 @@ fn test_day01_part1_additional_passing() {
     let solver = Day01;
 
     // R50 lands exactly on 0
-    let result = solver.solve("R50\n");
+    let result: Vec<String> = solver.solve("R50\n");
     assert_eq!(result[0], "1");
 
     // R100 lands back on 50, not zero
-    let result = solver.solve("R100\n");
+    let result: Vec<String> = solver.solve("R100\n");
     assert_eq!(result[0], "0");
 
     // L50 -> zero (count 1), then R50 -> 50 (no additional)
-    let result = solver.solve("L50\nR50\n");
+    let result: Vec<String> = solver.solve("L50\nR50\n");
     assert_eq!(result[0], "1");
 }
 
@@ -92,7 +92,7 @@ fn test_day01_part1_additional_passing() {
 fn test_day01_part1_additional_checks() {
     let solver = Day01;
     // Sanity check: R50 should land on 0 exactly once for Part 1
-    let result = solver.solve("R50\n");
+    let result: Vec<String> = solver.solve("R50\n");
     assert_eq!(result[0], "1");
 }
 
@@ -101,11 +101,11 @@ fn test_day01_part2_additional_passing() {
     let solver = Day01;
 
     // From existing reasoning: L200 hits zero twice
-    let result = solver.solve("L200\n");
+    let result: Vec<String> = solver.solve("L200\n");
     assert_eq!(result[1], "2");
 
     // R50 walks 50 steps to hit zero once
-    let result = solver.solve("R50\n");
+    let result: Vec<String> = solver.solve("R50\n");
     assert_eq!(result[1], "1");
 }
 
@@ -113,7 +113,7 @@ fn test_day01_part2_additional_passing() {
 fn test_day01_part2_additional_checks() {
     let solver = Day01;
     // Sanity check: R50 should cross 0 exactly once for Part 2
-    let result = solver.solve("R50\n");
+    let result: Vec<String> = solver.solve("R50\n");
     assert_eq!(result[1], "1");
 }
 
@@ -121,7 +121,7 @@ fn test_day01_part2_additional_checks() {
 fn test_day01_combined_passing() {
     let solver = Day01;
     // R50 -> lands on 0 once; L1 -> not zero. Part2: R50 hits zero once; L1 none.
-    let result = solver.solve("R50\nL1\n");
+    let result: Vec<String> = solver.solve("R50\nL1\n");
     assert_eq!(result[0], "1");
     assert_eq!(result[1], "1");
 }
@@ -130,7 +130,7 @@ fn test_day01_combined_passing() {
 fn test_day01_combined_additional_checks() {
     let solver = Day01;
     // Combined check: R50 -> hits/lands on 0 once; L1 -> no additional hits
-    let result = solver.solve("R50\nL1\n");
+    let result: Vec<String> = solver.solve("R50\nL1\n");
     assert_eq!(result[0], "1");
     assert_eq!(result[1], "1");
 }

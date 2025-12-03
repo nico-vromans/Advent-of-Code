@@ -1,5 +1,5 @@
 use super::*;
-use aoc_core::{read_input, Solver};
+use aoc_core::{Solver, read_input};
 
 // Tests for Day 2 — based on the puzzle README and the provided input file.
 
@@ -67,7 +67,7 @@ fn test_day02_real_input_known_answers() {
 fn test_day02_part1_additional_passing() {
     let solver = Day02;
     // From README: 95-115 has one invalid ID 99 for Part 1 => sum 99
-    let result = solver.solve("95-115");
+    let result: Vec<String> = solver.solve("95-115");
     assert_eq!(result[0], "99");
 }
 
@@ -75,7 +75,7 @@ fn test_day02_part1_additional_passing() {
 fn test_day02_part1_additional_checks() {
     let solver = Day02;
     // Sanity check: 95-115 has a single invalid ID (99) for Part 1
-    let result = solver.solve("95-115");
+    let result: Vec<String> = solver.solve("95-115");
     assert_eq!(result[0], "99");
 }
 
@@ -83,7 +83,7 @@ fn test_day02_part1_additional_checks() {
 fn test_day02_part2_additional_passing() {
     let solver = Day02;
     // From README Part 2: 95-115 has invalid IDs 99 and 111 => 99 + 111 = 210
-    let result = solver.solve("95-115");
+    let result: Vec<String> = solver.solve("95-115");
     assert_eq!(result[1], "210");
 }
 
@@ -91,14 +91,14 @@ fn test_day02_part2_additional_passing() {
 fn test_day02_part2_additional_checks() {
     let solver = Day02;
     // Sanity check: 95-115 has invalid IDs 99 and 111 for Part 2 => 210
-    let result = solver.solve("95-115");
+    let result: Vec<String> = solver.solve("95-115");
     assert_eq!(result[1], "210");
 }
 
 #[test]
 fn test_day02_combined_passing() {
     let solver = Day02;
-    let result = solver.solve("95-115");
+    let result: Vec<String> = solver.solve("95-115");
     assert_eq!(result[0], "99");
     assert_eq!(result[1], "210");
 }
@@ -106,7 +106,7 @@ fn test_day02_combined_passing() {
 #[test]
 fn test_day02_combined_additional_checks() {
     let solver = Day02;
-    let result = solver.solve("95-115");
+    let result: Vec<String> = solver.solve("95-115");
     // Additional combined check: verify both parts match expected values
     assert_eq!(result[0], "99");
     assert_eq!(result[1], "210");
