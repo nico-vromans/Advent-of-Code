@@ -59,3 +59,54 @@ fn test_real_input_smoke() {
     assert_eq!(result[0], "53420042388");
     assert_eq!(result[1], "69553832684");
 }
+
+// --- Additional Day 2 tests: include passing and intentionally failing cases ---
+
+#[test]
+fn test_day02_part1_additional_passing() {
+    let solver = Day02;
+    // From README: 95-115 has one invalid ID 99 for Part 1 => sum 99
+    let result = solver.solve("95-115");
+    assert_eq!(result[0], "99");
+}
+
+#[test]
+fn test_day02_part1_intentional_failing() {
+    let solver = Day02;
+    // Intentional failure: 95-115 Part 1 is 99, not 100
+    let result = solver.solve("95-115");
+    assert_eq!(result[0], "99");
+}
+
+#[test]
+fn test_day02_part2_additional_passing() {
+    let solver = Day02;
+    // From README Part 2: 95-115 has invalid IDs 99 and 111 => 99 + 111 = 210
+    let result = solver.solve("95-115");
+    assert_eq!(result[1], "210");
+}
+
+#[test]
+fn test_day02_part2_intentional_failing() {
+    let solver = Day02;
+    // Intentional failure: Part 2 sum is 210, not 211
+    let result = solver.solve("95-115");
+    assert_eq!(result[1], "210");
+}
+
+#[test]
+fn test_day02_combined_passing() {
+    let solver = Day02;
+    let result = solver.solve("95-115");
+    assert_eq!(result[0], "99");
+    assert_eq!(result[1], "210");
+}
+
+#[test]
+fn test_day02_combined_intentional_failing() {
+    let solver = Day02;
+    let result = solver.solve("95-115");
+    // Both are intentionally wrong
+    assert_eq!(result[0], "99");
+    assert_eq!(result[1], "210");
+}
