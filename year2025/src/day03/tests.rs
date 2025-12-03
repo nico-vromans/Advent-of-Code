@@ -2,7 +2,7 @@ use super::*;
 use aoc_core::Solver;
 
 #[test]
-fn test_solve_example_total_from_readme() {
+fn test_day03_readme_example_total_part1() {
     // Example from README.md
     let input = "987654321111111\n811111111111119\n234234234234278\n818181911112111";
 
@@ -14,7 +14,7 @@ fn test_solve_example_total_from_readme() {
 }
 
 #[test]
-fn test_single_bank_examples_from_readme() {
+fn test_day03_readme_single_bank_examples_part1() {
     let solver = Day03;
 
     // In 987654321111111, the largest joltage possible is 98
@@ -34,9 +34,9 @@ fn test_single_bank_examples_from_readme() {
     assert_eq!(result[0], "92");
 }
 
-// Part 2 tests from README.md (marked ignored until Part 2 is implemented)
+// Part 2 tests from README.md
 #[test]
-fn test_part2_solve_example_total_from_readme() {
+fn test_day03_readme_example_total_part2() {
     // Example from README.md Part Two
     let input = "987654321111111\n811111111111119\n234234234234278\n818181911112111";
 
@@ -49,7 +49,7 @@ fn test_part2_solve_example_total_from_readme() {
 }
 
 #[test]
-fn test_part2_single_bank_examples_from_readme() {
+fn test_day03_readme_single_bank_examples_part2() {
     let solver = Day03;
 
     // In 987654321111111, the largest 12-digit joltage is 987654321111
@@ -69,7 +69,9 @@ fn test_part2_single_bank_examples_from_readme() {
     assert_eq!(result[1], "888911112111");
 }
 
-// --- Additional Day 3 tests: include passing and intentionally failing cases ---
+// --- Additional Day 3 tests -------------------------------------------------
+// These complement the README example with extra passing cases and sanity checks
+// for both parts, plus a simple combined scenario.
 
 #[test]
 fn test_day03_part1_additional_passing() {
@@ -85,9 +87,9 @@ fn test_day03_part1_additional_passing() {
 }
 
 #[test]
-fn test_day03_part1_intentional_failing() {
+fn test_day03_part1_additional_checks() {
     let solver = Day03;
-    // Intentional failure: for 987654321111111, best is 98, not 97
+    // Sanity check: for 987654321111111, best two-digit is 98
     let result = solver.solve("987654321111111");
     assert_eq!(result[0], "98");
 }
@@ -106,9 +108,9 @@ fn test_day03_part2_additional_passing() {
 }
 
 #[test]
-fn test_day03_part2_intentional_failing() {
+fn test_day03_part2_additional_checks() {
     let solver = Day03;
-    // Intentional failure: expected 987654321111, not 987654321112
+    // Sanity check: expected 12-digit maximum is 987654321111
     let result = solver.solve("987654321111111");
     assert_eq!(result[1], "987654321111");
 }
@@ -123,11 +125,11 @@ fn test_day03_combined_passing() {
 }
 
 #[test]
-fn test_day03_combined_intentional_failing() {
+fn test_day03_combined_additional_checks() {
     let input = "987654321111111\n811111111111119\n234234234234278\n818181911112111";
     let solver = Day03;
     let result = solver.solve(input);
-    // Both are intentionally wrong
+    // Additional combined check: verify both parts match expected values
     assert_eq!(result[0], "357");
     assert_eq!(result[1], "3121910778619");
 }

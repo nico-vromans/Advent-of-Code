@@ -2,7 +2,7 @@ use super::*;
 use aoc_core::Solver;
 
 #[test]
-fn test_solve_example() {
+fn test_day01_readme_examples_both_parts() {
     let input = "L68
 L30
 R48
@@ -23,7 +23,7 @@ L82";
 }
 
 #[test]
-fn test_empty_input() {
+fn test_day01_empty_input() {
     let input: &str = "\n\n  \n"; // empty/whitespace-only lines
     let solver = Day01;
     let result: Vec<String> = solver.solve(input);
@@ -33,7 +33,7 @@ fn test_empty_input() {
 }
 
 #[test]
-fn test_lowercase_and_trim() {
+fn test_day01_lowercase_and_trim() {
     let input: &str = "  l1\n r2 \n l1  ";
     let solver = Day01;
     let result: Vec<String> = solver.solve(input);
@@ -45,7 +45,7 @@ fn test_lowercase_and_trim() {
 }
 
 #[test]
-fn test_wrapping_and_counts() {
+fn test_day01_wrapping_and_counts() {
     let solver = Day01;
 
     // Part 1: landing exactly on zero after a single large move should count once
@@ -61,16 +61,18 @@ fn test_wrapping_and_counts() {
 
 #[test]
 #[should_panic]
-fn test_invalid_direction_panics() {
+fn test_day01_invalid_direction_panics() {
     let solver = Day01;
     // 'U' should panic in the match arms
     let _ = solver.solve("U10\n");
 }
 
-// --- Additional Day 1 tests: include passing and intentionally failing cases ---
+// --- Additional Day 1 tests -------------------------------------------------
+// These complement the README example with extra passing cases and sanity checks
+// for both parts, plus a simple combined scenario.
 
 #[test]
-fn test_day01_part1_passing_cases() {
+fn test_day01_part1_additional_passing() {
     let solver = Day01;
 
     // R50 lands exactly on 0
@@ -87,15 +89,15 @@ fn test_day01_part1_passing_cases() {
 }
 
 #[test]
-fn test_day01_part1_intentional_failing() {
+fn test_day01_part1_additional_checks() {
     let solver = Day01;
-    // This is intended to fail: R50 should be 1, not 2
+    // Sanity check: R50 should land on 0 exactly once for Part 1
     let result = solver.solve("R50\n");
     assert_eq!(result[0], "1");
 }
 
 #[test]
-fn test_day01_part2_passing_cases() {
+fn test_day01_part2_additional_passing() {
     let solver = Day01;
 
     // From existing reasoning: L200 hits zero twice
@@ -108,9 +110,9 @@ fn test_day01_part2_passing_cases() {
 }
 
 #[test]
-fn test_day01_part2_intentional_failing() {
+fn test_day01_part2_additional_checks() {
     let solver = Day01;
-    // This is intended to fail: R50 should be 1, not 0
+    // Sanity check: R50 should cross 0 exactly once for Part 2
     let result = solver.solve("R50\n");
     assert_eq!(result[1], "1");
 }
@@ -125,9 +127,9 @@ fn test_day01_combined_passing() {
 }
 
 #[test]
-fn test_day01_combined_intentional_failing() {
+fn test_day01_combined_additional_checks() {
     let solver = Day01;
-    // Intentional mismatch on expected answers
+    // Combined check: R50 -> hits/lands on 0 once; L1 -> no additional hits
     let result = solver.solve("R50\nL1\n");
     assert_eq!(result[0], "1");
     assert_eq!(result[1], "1");

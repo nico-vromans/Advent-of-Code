@@ -4,7 +4,7 @@ use aoc_core::{read_input, Solver};
 // Tests for Day 2 — based on the puzzle README and the provided input file.
 
 #[test]
-fn test_solve_example_single() {
+fn test_day02_readme_example_single_both_parts() {
     // The README example (wrapped there for legibility) as a single line of ranges.
     // It should produce a sum of 33 for Part 1.
     let input: &str = "11-22";
@@ -27,7 +27,7 @@ fn test_solve_example_single() {
 }
 
 #[test]
-fn test_solve_example_full() {
+fn test_day02_readme_example_full_both_parts() {
     // The README example (wrapped there for legibility) as a single line of ranges.
     // It should produce a sum of 1227775554 for Part 1.
     let input: &str = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,\
@@ -45,10 +45,9 @@ fn test_solve_example_full() {
 }
 
 #[test]
-fn test_real_input_smoke() {
-    // This is a smoke test for the real input file to help quickly verify integration.
-    // Once you have the correct answers, replace the asserts with the known values and
-    // remove the #[ignore] to run it in CI/local runs.
+fn test_day02_real_input_known_answers() {
+    // Smoke test for the real input file to quickly verify integration using
+    // the known correct answers for both parts.
     let input: String = read_input(2025, 2).expect("input file should exist for day 02");
     let solver = Day02;
     let result: Vec<String> = solver.solve(&input);
@@ -60,7 +59,9 @@ fn test_real_input_smoke() {
     assert_eq!(result[1], "69553832684");
 }
 
-// --- Additional Day 2 tests: include passing and intentionally failing cases ---
+// --- Additional Day 2 tests -------------------------------------------------
+// These complement the README example with extra passing cases and sanity checks
+// for both parts, plus a simple combined scenario.
 
 #[test]
 fn test_day02_part1_additional_passing() {
@@ -71,9 +72,9 @@ fn test_day02_part1_additional_passing() {
 }
 
 #[test]
-fn test_day02_part1_intentional_failing() {
+fn test_day02_part1_additional_checks() {
     let solver = Day02;
-    // Intentional failure: 95-115 Part 1 is 99, not 100
+    // Sanity check: 95-115 has a single invalid ID (99) for Part 1
     let result = solver.solve("95-115");
     assert_eq!(result[0], "99");
 }
@@ -87,9 +88,9 @@ fn test_day02_part2_additional_passing() {
 }
 
 #[test]
-fn test_day02_part2_intentional_failing() {
+fn test_day02_part2_additional_checks() {
     let solver = Day02;
-    // Intentional failure: Part 2 sum is 210, not 211
+    // Sanity check: 95-115 has invalid IDs 99 and 111 for Part 2 => 210
     let result = solver.solve("95-115");
     assert_eq!(result[1], "210");
 }
@@ -103,10 +104,10 @@ fn test_day02_combined_passing() {
 }
 
 #[test]
-fn test_day02_combined_intentional_failing() {
+fn test_day02_combined_additional_checks() {
     let solver = Day02;
     let result = solver.solve("95-115");
-    // Both are intentionally wrong
+    // Additional combined check: verify both parts match expected values
     assert_eq!(result[0], "99");
     assert_eq!(result[1], "210");
 }
