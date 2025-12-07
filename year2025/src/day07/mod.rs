@@ -71,8 +71,67 @@ impl Solver for Day07 {
             splits
         }
 
-        fn part2(_input: &str) -> u128 {
-            0
+        fn part2(input: &str) -> u128 {
+            let lines: Vec<&str> = input.lines().filter(|l| !l.trim().is_empty()).collect();
+            if lines.is_empty() {
+                return 0;
+            }
+
+            let height = lines.len();
+            let width = lines[0].len();
+            let grid: Vec<Vec<char>> = lines.iter().map(|l| l.chars().collect()).collect();
+
+            // Find start
+            let mut start_pos = None;
+            for r in 0..height {
+                for c in 0..width {
+                    if grid[r][c] == 'S' {
+                        start_pos = Some((r, c));
+                        break;
+                    }
+                }
+                if start_pos.is_some() {
+                    break;
+                }
+            }
+
+            let (start_r, start_c) = match start_pos {
+                Some(pos) => pos,
+                None => return 0,
+            };
+
+            let mut counts: Vec<u128> = vec![0; width];
+            counts[start_c] = 1;
+
+            for r in (start_r + 1)..height {
+                let mut next_counts: Vec<u128> = vec![0; width];
+                
+                for c in 0..width {
+                    let count = counts[c];
+                    if count == 0 {
+                        continue;
+                    }
+                    
+                    let char_at = grid[r][c];
+                    if char_at == '^' {
+                        if c > 0 {
+                            next_counts[c - 1] += count;
+                        }
+                        if c < width - 1 {
+                            next_counts[c + 1] += count;
+                        }
+                    } else {
+                        next_counts[c] += count;
+                    }
+                }
+                
+                counts = next_counts;
+                if counts.iter().all(|&x| x == 0) {
+                    break;
+                }
+            }
+
+            counts.iter().sum()
         }
 
         vec![part1(input).to_string(), part2(input).to_string()]
