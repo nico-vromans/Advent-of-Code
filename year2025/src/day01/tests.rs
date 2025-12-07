@@ -1,4 +1,4 @@
-use super::*;
+use super::Day01;
 use aoc_core::Solver;
 
 #[test]

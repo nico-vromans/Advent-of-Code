@@ -1,4 +1,4 @@
-use super::*;
+use super::Day04;
 use aoc_core::{Solver, read_input};
 
 // Tests for Day 4 — based on the puzzle README and the provided input file.

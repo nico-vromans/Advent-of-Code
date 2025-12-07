@@ -1,4 +1,4 @@
-use super::*;
+use super::Day05;
 use aoc_core::{Solver, read_input};
 
 #[test]
