@@ -107,7 +107,90 @@ impl Solver for Day08 {
         }
 
         fn part2(input: &str) -> u128 {
-            123
+            // Keep connecting the closest unconnected pairs until all junction boxes
+            // are in one circuit. Return the product of the X coordinates of the
+            // last two junction boxes connected.
+            let mut points: Vec<(i128, i128, i128)> = Vec::new();
+
+            for line in input.lines() {
+                let s: &str = line.trim();
+                if s.is_empty() { continue; }
+                let mut it = s.split(',');
+                let x_str: &str = it.next().expect("missing x");
+                let y_str: &str = it.next().expect("missing y");
+                let z_str: &str = it.next().expect("missing z");
+                let x: i128 = x_str.trim().parse::<i128>().expect("invalid x");
+                let y: i128 = y_str.trim().parse::<i128>().expect("invalid y");
+                let z: i128 = z_str.trim().parse::<i128>().expect("invalid z");
+                points.push((x, y, z));
+            }
+
+            let n: usize = points.len();
+            if n == 0usize { return 0u128; }
+            if n == 1usize { return points[0].0 as u128; }
+
+            // Build all pair distances (squared Euclidean) as (dist, i, j).
+            let mut pairs: Vec<(u128, usize, usize)> = Vec::new();
+            pairs.reserve(n.saturating_mul(n.saturating_sub(1usize)) / 2usize);
+            for i in 0..n {
+                let (xi, yi, zi) = points[i];
+                for j in (i + 1usize)..n {
+                    let (xj, yj, zj) = points[j];
+                    let dx: i128 = xj - xi;
+                    let dy: i128 = yj - yi;
+                    let dz: i128 = zj - zi;
+                    let dist2: u128 = (dx * dx) as u128 + (dy * dy) as u128 + (dz * dz) as u128;
+                    pairs.push((dist2, i, j));
+                }
+            }
+
+            // Sort pairs by distance, then by indices for deterministic behavior.
+            pairs.sort_unstable_by(|a: &(u128, usize, usize), b: &(u128, usize, usize)| {
+                match a.0.cmp(&b.0) {
+                    core::cmp::Ordering::Equal => match a.1.cmp(&b.1) {
+                        core::cmp::Ordering::Equal => a.2.cmp(&b.2),
+                        other => other,
+                    },
+                    other => other,
+                }
+            });
+
+            // DSU setup
+            let mut parent: Vec<usize> = (0usize..n).collect();
+            let mut size: Vec<u128> = vec![1u128; n];
+
+            fn find(parent: &mut [usize], x: usize) -> usize {
+                let mut v: usize = x;
+                while parent[v] != v {
+                    let p: usize = parent[v];
+                    let gp: usize = parent[p];
+                    parent[v] = gp; // path halving
+                    v = p;
+                }
+                v
+            }
+
+            let mut comps: usize = n;
+            let mut last_i: usize = 0usize;
+            let mut last_j: usize = 0usize;
+
+            for &(_d, i, j) in &pairs {
+                let mut ri: usize = find(&mut parent, i);
+                let mut rj: usize = find(&mut parent, j);
+                if ri == rj { continue; }
+                // Union by size
+                if size[ri] < size[rj] { core::mem::swap(&mut ri, &mut rj); }
+                parent[rj] = ri;
+                size[ri] = size[ri] + size[rj];
+                comps = comps - 1usize;
+                last_i = i;
+                last_j = j;
+                if comps == 1usize { break; }
+            }
+
+            let xi: u128 = if points[last_i].0 >= 0 { points[last_i].0 as u128 } else { 0u128 };
+            let xj: u128 = if points[last_j].0 >= 0 { points[last_j].0 as u128 } else { 0u128 };
+            xi * xj
         }
 
         vec![part1(input).to_string(), part2(input).to_string()]
