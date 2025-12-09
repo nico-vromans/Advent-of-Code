@@ -1,4 +1,5 @@
 --- Day 6: Trash Compactor ---
+
 After helping the Elves in the kitchen, you were taking a break and helping them re-enact a movie scene when you
 over-enthusiastically jumped into the garbage chute!
 
@@ -43,6 +44,7 @@ Solve the problems on the math worksheet. What is the grand total found by addin
 individual problems?
 
 --- Part Two ---
+
 The big cephalopods come back to check on how things are going. When they see that your grand total doesn't match the
 one expected by the worksheet, they realize they forgot to explain how to read cephalopod math.
 

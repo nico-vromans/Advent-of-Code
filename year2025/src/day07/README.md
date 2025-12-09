@@ -1,4 +1,5 @@
 --- Day 7: Laboratories ---
+
 You thank the cephalopods for the help and exit the trash compactor, finding yourself in the familiar halls of a North
 Pole research wing.
 
@@ -132,6 +133,7 @@ example, a tachyon beam is split a total of 21 times.
 Analyze your manifold diagram. How many times will the beam be split?
 
 --- Part Two ---
+
 With your analysis of the manifold complete, you begin fixing the teleporter. However, as you open the side of the
 teleporter to replace the broken manifold, you are surprised to discover that it isn't a classical tachyon manifold -
 it's a quantum tachyon manifold.

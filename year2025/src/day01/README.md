@@ -1,4 +1,5 @@
 --- Day 1: Secret Entrance ---
+
 The Elves have good news and bad news.
 
 The good news is that they've discovered project management! This has given them the tools they need to prevent their
@@ -72,6 +73,7 @@ Because the dial points at 0 a total of three times during this process, the pas
 Analyze the rotations in your attached document. What's the actual password to open the door?
 
 --- Part Two ---
+
 You're sure that's the right password, but the door won't open. You knock, but nobody answers. You build a snowman while
 you think.
 

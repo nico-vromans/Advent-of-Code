@@ -1,4 +1,5 @@
 --- Day 8: Playground ---
+
 Equipped with a new understanding of teleporter maintenance, you confidently step onto the repaired teleporter pad.
 
 You rematerialize on an unfamiliar teleporter pad and find yourself in a vast underground space which contains a giant
@@ -69,6 +70,7 @@ Your list contains many junction boxes; connect together the 1000 pairs of junct
 Afterward, what do you get if you multiply together the sizes of the three largest circuits?
 
 --- Part Two ---
+
 The Elves were right; they definitely don't have enough extension cables. You'll need to keep connecting junction boxes
 together until they're all in one large circuit.
 

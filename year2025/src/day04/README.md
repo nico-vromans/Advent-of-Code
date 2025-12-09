@@ -1,4 +1,5 @@
 --- Day 4: Printing Department ---
+
 You ride the escalator down to the printing department. They're clearly getting ready for Christmas; they have lots of
 large rolls of paper everywhere, and there's even a massive printer in the corner (to handle the really big print jobs).
 
@@ -45,6 +46,7 @@ x.x.@@@.x.
 Consider your complete diagram of the paper roll locations. How many rolls of paper can be accessed by a forklift?
 
 --- Part Two ---
+
 Now, the Elves just need help accessing as much of the paper as they can.
 
 Once a roll of paper can be accessed by a forklift, it can be removed. Once a roll of paper is removed, the forklifts
