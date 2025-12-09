@@ -8,7 +8,7 @@ pub mod day05;
 pub mod day06;
 pub mod day07;
 pub mod day08;
-mod day09;
+pub mod day09;
 
 pub fn get_solver(day: u8) -> Option<Box<dyn Solver>> {
     match day {
@@ -20,6 +20,7 @@ pub fn get_solver(day: u8) -> Option<Box<dyn Solver>> {
         6 => Some(Box::new(day06::Day06)),
         7 => Some(Box::new(day07::Day07)),
         8 => Some(Box::new(day08::Day08)),
+        9 => Some(Box::new(day09::Day09)),
         _ => None,
     }
 }
