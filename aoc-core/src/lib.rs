@@ -11,20 +11,31 @@ pub struct Day {
 }
 
 pub fn read_input(year: u16, day: u8) -> Result<String, std::io::Error> {
-    let paths: [String; 3] = [
-        format!("year{}/src/day{:02}/input.txt", year, day), // From workspace root
-        format!("src/day{:02}/input.txt", day),              // From year crate root
-        format!("day{:02}/input.txt", day),                  // From src dir (unlikely but possible)
+    let base_paths: [String; 3] = [
+        format!("year{}/src/day{:02}/input", year, day), // From workspace root
+        format!("src/day{:02}/input", day),              // From year crate root
+        format!("day{:02}/input", day),                  // From src dir (unlikely but possible)
     ];
 
-    for path in &paths {
-        if let Ok(content) = std::fs::read_to_string(path) {
-            return Ok(content);
+    let extensions: [&str; 2] = ["txt", "in"];
+
+    for base in &base_paths {
+        for ext in &extensions {
+            let path: String = format!("{base}.{ext}");
+            if let Ok(content) = std::fs::read_to_string(path) {
+                return Ok(content);
+            }
         }
     }
 
     Err(std::io::Error::new(
         std::io::ErrorKind::NotFound,
-        format!("Could not find input file. Checked: {:?}", paths),
+        format!(
+            "Could not find input file. Checked: {:?}",
+            base_paths
+                .iter()
+                .flat_map(|b: &String| extensions.iter().map(move |e: &&str| format!("{b}.{e}")))
+                .collect::<Vec<_>>()
+        ),
     ))
 }

@@ -27,3 +27,28 @@ fn test_day09_real_input_known_answer_part1() {
     // Known correct Part 1 answer (computed via runner)
     assert_eq!(result[0], "4759930955");
 }
+
+#[test]
+fn test_day09_readme_example_part2() {
+    // Example from README.md (same red tile list)
+    let input: &str = "7,1\n11,1\n11,7\n9,7\n9,5\n2,5\n2,3\n7,3";
+
+    let solver: Day09 = Day09;
+    let result: Vec<String> = solver.solve(input);
+
+    // README: largest rectangle using only red+green tiles has area 24
+    assert_eq!(result[1], "24");
+}
+
+#[test]
+fn test_day09_real_input_known_answer_part2() {
+    let input: String = read_input(2025, 9).expect("input file should exist for day 09");
+    let solver: Day09 = Day09;
+    let result: Vec<String> = solver.solve(&input);
+
+    // Ensure two parts are returned
+    assert_eq!(result.len(), 2, "solver should return two answers");
+
+    // Known correct Part 2 answer (computed via runner)
+    assert_eq!(result[1], "1525241870");
+}
